@@ -2,7 +2,12 @@ package codes.laser.ppmtool.model;
 
 import javax.persistence.*;
 import java.util.Date;
-
+/**
+ * Created By Arjun Gautam .
+ * Date: 2020-11-24
+ * Time: 21:52
+ * Project Name : ppmtool
+ */
 @Entity
 public class Project {
 
