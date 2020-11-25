@@ -7,7 +7,6 @@
 package codes.laser.ppmtool.model;
 
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
