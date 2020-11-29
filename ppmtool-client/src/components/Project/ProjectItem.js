@@ -7,14 +7,14 @@ class ProjectItem extends Component {
         <div className="container">
             <div className="card card-body bg-light mb-3">
                 <div className="row">
-                    <div className="col-2">
-                        <span className="mx-auto">REACT</span>
+                    <div className="col-md-3 mr-auto border-left">
+                        <span className="text-center">REACT</span>
                     </div>
-                    <div className="col-lg-6 col-md-4 col-8">
+                    <div className="col-md-3 mr-auto">
                         <h3>Spring / React Project</h3>
                         <p>Project to create a Kanban Board with Spring Boot and React</p>
                     </div>
-                    <div className="col-md-4 d-none d-lg-block">
+                    <div className="col-md-3 ml-auto border-right">
                         <ul className="list-group">
                             <a href="#">
                                 <li className="list-group-item board">
@@ -36,6 +36,7 @@ class ProjectItem extends Component {
                 </div>
             </div>
         </div>
+
 
     )
         ;
