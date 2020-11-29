@@ -4,6 +4,8 @@ import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import AddProject from "./components/Project/AddProject";
+import AddProjectMaterial from "./components/Project/AddProjectMaterial";
+import CreateProjectButton from "./components/Project/CreateProjectButton";
 
 function App() {
     return (
