@@ -6,13 +6,12 @@ import { getProjects } from "../actions/projectActions";
 import { PropTypes } from "prop-types";
 
 class Dashboard extends Component {
-
   componentDidMount() {
     this.props.getProjects();
   }
 
-
   render() {
+    const projects = this.props.project.projects;
     return (
       <div>
         {/*Dashboard Component (Project Item included) */}
@@ -28,8 +27,9 @@ class Dashboard extends Component {
 
                 <br />
                 <hr />
-
-                <ProjectItem />
+                {projects.map((project) => (
+                  <ProjectItem key={project.id} project={project}/>
+                ))}
               </div>
             </div>
           </div>

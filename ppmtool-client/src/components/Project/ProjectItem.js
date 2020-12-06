@@ -2,16 +2,17 @@ import React, { Component } from "react";
 
 class ProjectItem extends Component {
   render() {
+    const {project} =this.props;
     return (
       <div className="container">
         <div className="card card-body bg-light mb-3">
           <div className="row">
             <div className="col-md-3 mr-auto border-left">
-              <span className="text-center">REACT</span>
+              <span className="text-center">{project.projectIdentifier}</span>
             </div>
             <div className="col-md-3 mr-auto">
-              <h3>Spring / React Project</h3>
-              <p>Project to create a Kanban Board with Spring Boot and React</p>
+              <h3>{project.projectName}</h3>
+              <p>{project.description}</p>
             </div>
             <div className="col-md-3 ml-auto border-right">
               <ul className="list-group">
