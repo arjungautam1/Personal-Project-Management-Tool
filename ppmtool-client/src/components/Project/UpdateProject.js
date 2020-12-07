@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
+import {getProject} from "../../actions/projectActions";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import classnames from "classnames";
+import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
 class UpdateProject extends Component {
+    componentDidMount() {
+        const {id}=this.props.match.params;
+        this.props.getProject(id,this.props.history);
+
+    }
+
     render() {
         return (
             <div>
@@ -20,7 +31,7 @@ class UpdateProject extends Component {
                                                placeholder="Unique Project ID"
                                                disabled/>
                                     </div>
-                                  {/*  // <!-- disabled for Edit Only!! remove "disabled" for the Create operation -->*/}
+                                  {/*  <!-- disabled for Edit Only!! remove "disabled" for the Create operation -->*/}
                                     <div className="form-group">
                                         <textarea className="form-control form-control-lg"
                                                   placeholder="Project Description"></textarea>
@@ -44,5 +55,11 @@ class UpdateProject extends Component {
         );
     }
 }
-
-export default UpdateProject;
+UpdateProject.propTyps={
+    getProject:PropTypes.func.isRequired,
+    project:PropTypes.object.isRequired
+}
+const mapStateToPropsUpdate=(state)=>({
+    project:state.project.project
+})
+export default connect(mapStateToPropsUpdate,{getProject})(UpdateProject);
