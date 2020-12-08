@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@material-ui/icons": "^4.9.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "prop-types": "^15.7.2"
   }
 }
