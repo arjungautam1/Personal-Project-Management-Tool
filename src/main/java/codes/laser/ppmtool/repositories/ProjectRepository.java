@@ -7,8 +7,11 @@
 package codes.laser.ppmtool.repositories;
 
 import codes.laser.ppmtool.model.Project;
+import codes.laser.ppmtool.model.ProjectTask;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long> {
@@ -16,5 +19,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     @Override
     Iterable<Project> findAll();
+
 
 }
