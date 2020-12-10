@@ -15,6 +15,7 @@ import codes.laser.ppmtool.repositories.ProjectRepository;
 import codes.laser.ppmtool.repositories.ProjectTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Iterator;
 import java.util.List;
@@ -72,10 +73,17 @@ public class ProjectTaskService {
 
         Project project = projectRepository.findByProjectIdentifier(id);
 
-        if(project==null){
-            throw new ProjectNotFoundException("Project with id :'"+id+"'does not exist");
+        if (project == null) {
+            throw new ProjectNotFoundException("Project with id :'" + id + "'does not exist");
         }
 
         return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
+    }
+
+    public ProjectTask findPTByProjectSequence(String backlog_id,String pt_id) {
+        //We are searching on the right backlog
+
+        return projectTaskRepository.findByProjectSequence(pt_id);
+
     }
 }
