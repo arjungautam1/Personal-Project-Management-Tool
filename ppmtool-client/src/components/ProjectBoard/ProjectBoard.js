@@ -7,17 +7,15 @@ import { getBacklog } from "../../actions/backlogActions";
 import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
 class ProjectBoard extends Component {
-
-
-    //constructor to handle errors
-    componentDidMount() {
-        const {id} =this.props.match.params
-        this.props.getBacklog(id);
-    }
-
-
-    render() {
+  //constructor to handle errors
+  componentDidMount() {
     const { id } = this.props.match.params;
+    this.props.getBacklog(id);
+  }
+
+  render() {
+    const { id } = this.props.match.params;
+    const { project_tasks } = this.props.backlog;
     return (
       <div className="container">
         <Link to={`/addProjectTask/${id}`} className="btn btn-primary mb-3">
@@ -26,7 +24,7 @@ class ProjectBoard extends Component {
         <br />
         <hr />
         {/*Backlog STARTS HERE */}
-        <Backlog />
+        <Backlog project_task_prop={project_tasks} />
         {/*Backlog ENDS HERE */}
       </div>
     );
@@ -42,4 +40,6 @@ const mapStateToPropsProjectBoard = (state) => ({
   backlog: state.backlog,
 });
 
-export default connect(mapStateToPropsProjectBoard, { getBacklog })(ProjectBoard);
+export default connect(mapStateToPropsProjectBoard, { getBacklog })(
+  ProjectBoard
+);
