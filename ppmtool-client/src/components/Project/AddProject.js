@@ -19,14 +19,12 @@ class AddProject extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  // life cycle hooks
+  //life cycle hooks
   componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
-
-
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
