@@ -3,9 +3,9 @@ import ProjectTask from "./ProjectTasks/ProjectTask";
 
 class Backlog extends Component {
   render() {
-    const { project_task_prop } = this.props;
+    const { project_tasks_prop } = this.props;
 
-    const tasks = project_task_prop.map((project_task) => (
+    const tasks = project_tasks_prop.map((project_task) => (
       <ProjectTask key={project_task.id} project_task={project_task} />
     ));
 
@@ -35,7 +35,9 @@ class Backlog extends Component {
           <div className="col-md-4">
             <div className="card text-center mb-2">
               <div className="card-header bg-secondary text-white">
-                <h3><b>TO DO</b></h3>
+                <h3>
+                  <b>TO DO</b>
+                </h3>
               </div>
             </div>
             {todoItems}
@@ -44,7 +46,9 @@ class Backlog extends Component {
           <div className="col-md-4">
             <div className="card text-center mb-2">
               <div className="card-header bg-primary text-white">
-                <h3><b>In Progress</b></h3>
+                <h3>
+                  <b>In Progress</b>
+                </h3>
               </div>
             </div>
             {inProgressItems}
@@ -52,7 +56,9 @@ class Backlog extends Component {
           <div className="col-md-4">
             <div className="card text-center mb-2">
               <div className="card-header bg-success text-white">
-                <h3><b>Done</b></h3>
+                <h3>
+                  <b>Done</b>
+                </h3>
               </div>
             </div>
             {doneItems}

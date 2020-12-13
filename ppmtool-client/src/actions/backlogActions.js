@@ -25,10 +25,10 @@ export const getBacklog = (backlog_id) => async (dispatch) => {
       type: GET_BACKLOG,
       payload: res.data,
     });
-  } catch (e) {
+  } catch (err) {
     dispatch({
       type: GET_ERRORS,
-      payload: e.response.data,
+      payload: err.response.data,
     });
   }
 };
