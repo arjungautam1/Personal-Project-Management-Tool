@@ -7,6 +7,7 @@
 package codes.laser.ppmtool.services;
 
 import codes.laser.ppmtool.exceptions.ProjectIDException;
+import codes.laser.ppmtool.exceptions.ProjectNotFoundException;
 import codes.laser.ppmtool.model.Backlog;
 import codes.laser.ppmtool.model.Project;
 import codes.laser.ppmtool.model.User;
@@ -51,24 +52,24 @@ public class ProjectService {
         }
     }
 
-    public Project findProjectByIdentifier(String projectId) {
+    public Project findProjectByIdentifier(String projectId, String username) {
         Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
         if (project == null) {
             throw new ProjectIDException("Project Id'" + projectId + "'does not exist.");
         }
+        if (!project.getProjectLeader().equals(username)) {
+            throw new ProjectNotFoundException("Project not found in your account");
+        }
         return project;
     }
 
-    public Iterable<Project> findAllProjects() {
-        return projectRepository.findAll();
+    public Iterable<Project> findAllProjects(String username) {
+        return projectRepository.findAllByProjectLeader(username);
     }
 
-    public void deleteProjectByIdentifier(String projectId) {
-        Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
-        if (project == null) {
-            throw new ProjectIDException("Cannot delete Project with ID'" + projectId + "'.This project does not exist.");
-        }
-        projectRepository.delete(project);
+    public void deleteProjectByIdentifier(String projectId, String username) {
+
+        projectRepository.delete(findProjectByIdentifier(projectId, username));
 
     }
 
