@@ -9,8 +9,10 @@ package codes.laser.ppmtool.services;
 import codes.laser.ppmtool.exceptions.ProjectIDException;
 import codes.laser.ppmtool.model.Backlog;
 import codes.laser.ppmtool.model.Project;
+import codes.laser.ppmtool.model.User;
 import codes.laser.ppmtool.repositories.BacklogRepository;
 import codes.laser.ppmtool.repositories.ProjectRepository;
+import codes.laser.ppmtool.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,15 @@ public class ProjectService {
     @Autowired
     private BacklogRepository backlogRepository;
 
-    public Project saveOrUpdateProject(Project project) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public Project saveOrUpdateProject(Project project, String username) {
         try {
+
+            User user = userRepository.findByUsername(username);
+            project.setUser(user);
+            project.setProjectLeader(user.getUsername());
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
 
             if (project.getId() == null) {
@@ -33,7 +42,7 @@ public class ProjectService {
                 backlog.setProject(project);
                 backlog.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
             }
-            if(project.getId()!=null){
+            if (project.getId() != null) {
                 project.setBacklog(backlogRepository.findByProjectIdentifier(project.getProjectIdentifier().toUpperCase()));
             }
             return projectRepository.save(project);
