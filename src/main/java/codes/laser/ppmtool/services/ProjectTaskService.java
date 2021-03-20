@@ -63,18 +63,14 @@ public class ProjectTaskService {
 
     }
 
-    public Iterable<ProjectTask> findBacklogById(String id,String username) {
-        projectService.findProjectByIdentifier(id,username);
+    public Iterable<ProjectTask> findBacklogById(String id, String username) {
+        projectService.findProjectByIdentifier(id, username);
         return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
     }
 
-    public ProjectTask findPTByProjectSequence(String backlog_id, String pt_id) {
+    public ProjectTask findPTByProjectSequence(String backlog_id, String pt_id, String username) {
         //We are searching on the right backlog
-        Backlog backlog = backlogRepository.findByProjectIdentifier(backlog_id);
-        if (backlog == null) {
-            throw new ProjectNotFoundException("Project with id :'" + backlog_id + "'does not exist");
-        }
-
+        projectService.findProjectByIdentifier(backlog_id, username);
         //make sure that our task exists
 
         ProjectTask projectTask = projectTaskRepository.findByProjectSequence(pt_id);
@@ -93,15 +89,15 @@ public class ProjectTaskService {
 
     }
 
-    public ProjectTask updateByProjectSequence(ProjectTask updatedTask, String backlog_id, String pt_id) {
-        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id);
+    public ProjectTask updateByProjectSequence(ProjectTask updatedTask, String backlog_id, String pt_id,String username) {
+        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id,username);
 
         projectTask = updatedTask;
         return projectTaskRepository.save(projectTask);
     }
 
-    public void deletePTByProjectSequence(String backlog_id, String pt_id) {
-        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id);
+    public void deletePTByProjectSequence(String backlog_id, String pt_id,String username) {
+        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id,username);
         projectTaskRepository.delete(projectTask);
 
     }
