@@ -11,8 +11,6 @@ import codes.laser.ppmtool.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -26,7 +24,6 @@ import java.util.Collections;
 
 import static codes.laser.ppmtool.security.SecurityConstants.HEADER_STRING;
 import static codes.laser.ppmtool.security.SecurityConstants.TOKEN_PREFIX;
-import static org.springframework.util.StringUtils.hasText;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
