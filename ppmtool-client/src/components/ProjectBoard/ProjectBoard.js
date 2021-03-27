@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Backlog from "./Backlog";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import PropTypes, {element} from "prop-types";
 import { getBacklog } from "../../actions/backlogActions";
 
 class ProjectBoard extends Component {
@@ -39,8 +39,16 @@ class ProjectBoard extends Component {
             <div className="alert alert-danger text-center" role="alert">
               {errors.projectNotFound}
             </div>
+          )}
+          else if(errors.projectIdentifier) {
+          return (
+              <div className="alert alert-danger text-center" role="alert">
+                {errors.projectIdentifier}
+              </div>
           );
-        } else {
+        }
+
+        else {
           return (
             <div className="alert alert-info text-center" role="alert">
               No Project Tasks on this board
